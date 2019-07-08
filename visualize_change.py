@@ -81,4 +81,4 @@ for i in range(0, len(histo[0])):
 
 # for col in 'xy':
 #     plt.hist(data[col], alpha=0.5)
-# plt.show()
+plt.show()
