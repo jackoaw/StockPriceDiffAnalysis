@@ -65,12 +65,9 @@ print("Standard Deviation: " + str(std_dev))
 df = pd.DataFrame(data=change_list, columns=["data"])
 bins = np.array([-5,-4.5,-4,-3.5,-3,-2.5,-2,-1.5,-1,-.5,0,.5,1,1.5,2,2.5,3,3.5,4,4.5,5])
 df["bucket"] = pd.cut(df.data, bins)
-print(df.head(10))
 
 histo = np.histogram(change_list, bins)
 
-print(histo[1])
-print(histo[0])
 for i in range(0, len(histo[0])):
 	print("<%.1f : %i : %.2f%%"%(histo[1][i], histo[0][i], histo[0][i]/allnums*100))
 
