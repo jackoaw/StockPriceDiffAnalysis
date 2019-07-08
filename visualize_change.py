@@ -64,7 +64,8 @@ print("Standard Deviation: " + str(std_dev))
 # Filter out extreme data
 if filtering:
 	change_list = list(filter(lambda x: x > -3*std_dev and x < 3*std_dev, change_list))
-
+	std_dev = np.std(change_list)
+print("New Filtered Standard Deviation: " + str(std_dev))
 mean = np.mean(change_list)
 print("Mean: " + str(mean))
 median = np.median(change_list)
