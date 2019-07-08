@@ -54,10 +54,3 @@ sns.set(color_codes=True)
 sns.distplot(change_list, kde=True, rug=True);
 
 plt.show()
-
-# data = np.random.multivariate_normal([0, 0], [[5, 2], [2, 2]], size=2000)
-# data = pd.DataFrame(data, columns=['x', 'y'])
-
-# for col in 'xy':
-#     plt.hist(data[col], alpha=0.5)
-# plt.show()
