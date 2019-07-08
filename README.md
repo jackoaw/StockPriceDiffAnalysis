@@ -4,4 +4,4 @@ The original purpose of this program was to help determine risk when selling Opt
 
 You can run the program as such:
 
-python visualize_change.py <filename> <days>
+python visualize_change.py \<filename\> \<days\>
