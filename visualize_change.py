@@ -20,13 +20,17 @@ change_list = []
 #Option for rounding for accuracy, turn off for volotile stocks
 round_bool = True
 
+# Option for filtering out extreme data beyond 3 standard deviations
+filtering = True
+
 data = None
 with open (readfile, "r") as f:
     data=f.readlines()
 
+# Contains a count of the numbers
 allnums = 0 
 
-# prev_close = 0
+# Parse through the CSV
 for i in range(1, len(data)):
 	line = data[i]
 	try:
@@ -51,20 +55,27 @@ for i in range(1, len(data)):
 	change_list.append(poc)
 	allnums +=1
 
+# Code for printing out individual percentages and counts
 # for key in sorted(change_map.keys()):
 #     print("%s%%: %.2f%%" % (key, change_map[key]*1.0/allnums*100))
 
-sns.set(color_codes=True)
-sns.distplot(change_list, norm_hist=True, kde=True, rug=True);
-
-# plt.show()
-
 std_dev = np.std(change_list)
 print("Standard Deviation: " + str(std_dev))
+# Filter out extreme data
+if filtering:
+	change_list = list(filter(lambda x: x > -3*std_dev and x < 3*std_dev, change_list))
+
 mean = np.mean(change_list)
 print("Mean: " + str(mean))
 median = np.median(change_list)
 print("Median: " + str(median))
+# Print out the standard deviations from the average up to 2 std deviations
+print("***********************")
+print("%.1f - %.1f : 95.4%%"%(mean-(std_dev*2), mean-std_dev))
+print("%.1f - %.1f : 68.2%%"%(mean-std_dev, mean))
+print("%.1f - %.1f : 68.2%%"%(mean, mean+std_dev))
+print("%.1f - %.1f : 95.4%%"%(mean+std_dev, mean+(std_dev*2)))
+print("***********************")
 
 df = pd.DataFrame(data=change_list, columns=["data"])
 bins = np.array([-5,-4.5,-4,-3.5,-3,-2.5,-2,-1.5,-1,-.5,0,.5,1,1.5,2,2.5,3,3.5,4,4.5,5])
@@ -76,10 +87,12 @@ for i in range(0, len(histo[0])):
 	print("<%.1f : %i : %.2f%%"%(histo[1][i], histo[0][i], histo[0][i]/allnums*100))
 
 #EXTRA: 
-
 # data = np.random.multivariate_normal([0, 0], [[5, 2], [2, 2]], size=2000)
 # data = pd.DataFrame(data, columns=['x', 'y'])
 
 # for col in 'xy':
 #     plt.hist(data[col], alpha=0.5)
+
+sns.set(color_codes=True)
+sns.distplot(change_list, norm_hist=True, kde=True, rug=True);
 plt.show()
