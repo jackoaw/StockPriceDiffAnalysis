@@ -61,6 +61,10 @@ sns.distplot(change_list, norm_hist=True, kde=True, rug=True);
 
 std_dev = np.std(change_list)
 print("Standard Deviation: " + str(std_dev))
+mean = np.mean(change_list)
+print("Mean: " + str(mean))
+median = np.median(change_list)
+print("Median: " + str(median))
 
 df = pd.DataFrame(data=change_list, columns=["data"])
 bins = np.array([-5,-4.5,-4,-3.5,-3,-2.5,-2,-1.5,-1,-.5,0,.5,1,1.5,2,2.5,3,3.5,4,4.5,5])
