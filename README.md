@@ -5,3 +5,6 @@ The original purpose of this program was to help determine risk when selling Opt
 You can run the program as such:
 
 python visualize_change.py \<filename\> \<days\>
+
+TODO:
+Different Standard Deviations for negative and positive changes
