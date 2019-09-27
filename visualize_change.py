@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from matplotlib import colors
+from matplotlib.ticker import PercentFormatter
 from scipy import stats
 import time
 import sys
@@ -55,7 +57,7 @@ def start():
     #Option for rounding for accuracy, turn off for volotile stocks
     round_bool = True
     # Option for filtering out extreme data beyond 3 standard deviations
-    filtering = True
+    filtering = False
 
     # # If file exists locally, use it
     # try:
@@ -122,15 +124,15 @@ def start():
     for i in range(0, len(histo[0])):
        print("<%.1f : %i : %.2f%%"%(histo[1][i], histo[0][i], histo[0][i]/allnums*100))
 
-    #EXTRA: 
-    # data = np.random.multivariate_normal([0, 0], [[5, 2], [2, 2]], size=2000)
-    # data = pd.DataFrame(data, columns=['x', 'y'])
+    # sns.set(color_codes=True)
+    # print(change_list)
+    # sns.distplot(change_list, norm_hist=True, kde=True, rug=True);
+    fig, axs = plt.subplots(1, 1, sharey=True, tight_layout=True)
 
-    # for col in 'xy':
-    #     plt.hist(data[col], alpha=0.5)
+    # We can set the number of bins with the `bins` kwarg
+    axs.hist(change_list, bins=40, density=True)
+    axs.yaxis.set_major_formatter(PercentFormatter(xmax=1))
 
-    sns.set(color_codes=True)
-    sns.distplot(change_list, norm_hist=True, kde=True, rug=True);
     plt.show()
 
 if __name__ == '__main__':
