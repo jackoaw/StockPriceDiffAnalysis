@@ -14,8 +14,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## TODO:
 - Different Standard Deviations for negative and positive changes
-- Better standard deviation chart
-- Import YahooFinancials library and have it pull financial data from Yahoo instead of locally
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
